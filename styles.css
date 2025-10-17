@@ -1,91 +1,139 @@
-/* FFIX-themed minimal design (dark, crystal hues) */
+/* ==== Theme ============================================================= */
 :root{
-  --bg:#0a0f18;
-  --panel:#0f1624;
-  --edge:#1a2336;
+  --bg:#191918;      /* page background (from your image sampler) */
+  --panel:#1c1c1c;   /* hero & card background */
+  --edge:#2a2a2a;    /* borders */
   --fg:#e6edf3;
-  --muted:#9cb0c2;
-  --accent:#7cc2ff;
+  --muted:#a9b0b6;
+  --accent:#7cc2ff;  /* link/button accent */
   --accent-2:#b7f0ff;
-  --glow: 0 0 24px rgba(124,194,255,.35);
+  --glow: 0 0 24px rgba(124,194,255,.25);
 }
 
-*{box-sizing:border-box}
-html,body{height:100%}
+/* ==== Fonts ============================================================= */
+/* Self-hosted FFIX pixel font.
+   If you only have TTF, delete the woff2 source line. */
+@font-face{
+  font-family: "FFIX";
+  src:
+    url("/assets/fonts/FFIX/FFIX.woff2") format("woff2"),
+    url("/assets/fonts/FFIX/FFIX.ttf") format("truetype");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ==== Base ============================================================== */
+*{ box-sizing:border-box }
+html,body{ height:100% }
+
 body{
   margin:0;
-  background:
-    radial-gradient(1200px 600px at 80% -10%, rgba(124,194,255,.12), transparent 60%),
-    radial-gradient(900px 500px at 10% 0%, rgba(183,240,255,.08), transparent 55%),
-    linear-gradient(180deg, var(--bg), #070b12 60%);
+  background: var(--bg);           /* solid neutral, no vignettes */
   color:var(--fg);
-  font:16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif;
+  font:32px/1.55 "FFIX", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif;
   -webkit-font-smoothing:antialiased;
 }
 
-.container{max-width:1080px;margin:0 auto;padding:24px}
+.container{ max-width:1080px; margin:0 auto; padding:24px }
 
-.site-header,.site-footer{
-  display:flex;align-items:center;justify-content:space-between;gap:16px;
+.site-header,
+.site-footer{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
 }
 
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--fg);font-weight:700}
-.brand img{filter:drop-shadow(var(--glow))}
+.brand{ display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--fg); font-weight:700 }
+.brand img{ filter:drop-shadow(var(--glow)) }
 
-.nav a{color:var(--muted);text-decoration:none;margin-left:14px}
-.nav a:hover{color:var(--fg)}
+/* Headings + brand use FFIX; body stays same family as set above */
+.brand span, h1, h2, h3{
+  font-family:"FFIX", ui-serif, Georgia, "Times New Roman", serif;
+  letter-spacing:.2px;
+}
+h1, h2{ text-shadow:0 1px 0 rgba(0,0,0,.35), 0 0 18px rgba(124,194,255,.15) }
 
+.nav a{ color:var(--muted); text-decoration:none; margin-left:14px }
+.nav a:hover{ color:var(--fg) }
+
+/* ==== Hero (now same shell as cards) ==================================== */
 .hero{
-  display:grid;grid-template-columns:1.15fr .85fr;gap:24px;
-  margin:24px 0 8px;
-  padding:24px;
-  background:linear-gradient(180deg, rgba(26,35,54,.6), rgba(26,35,54,.2));
-  border:1px solid var(--edge);border-radius:18px;box-shadow:0 18px 50px rgba(0,0,0,.35);
+  display:grid;
+  grid-template-columns: 1.15fr .85fr;
+  align-items:center;
+  gap:28px;
+
+  margin:22px 0 8px;
+  padding:20px 22px;
+
+  background:var(--panel);
+  border:1px solid var(--edge);
+  border-radius:16px;
+  box-shadow:0 12px 30px rgba(0,0,0,.25);
 }
-.hero__copy h1{font-size:clamp(28px,5vw,46px);line-height:1.05;margin:0 0 10px}
-.hero__copy .muted{color:var(--muted)}
+.hero__copy h1{ font-size:clamp(28px,5vw,46px); line-height:1.05; margin:0 0 10px }
+.hero__copy .muted{ color:var(--muted) }
+
 .crystal-text{
   background:linear-gradient(90deg, var(--accent), var(--accent-2));
-  -webkit-background-clip:text;background-clip:text;color:transparent;
+  -webkit-background-clip:text; background-clip:text; color:transparent;
   text-shadow:0 0 20px rgba(124,194,255,.25);
 }
-.cta-row{display:flex;gap:12px;margin-top:14px}
 
+.cta-row{ display:flex; gap:12px; margin-top:14px }
+
+.hero__art{ display:flex; align-items:center; justify-content:center; padding-right:10px }
+.crystal{ display:block; max-height:420px; width:auto; animation:float 6s ease-in-out infinite }
+@keyframes float{ 50%{ transform:translateY(-6px) } }
+
+/* ==== Buttons =========================================================== */
 .btn{
-  display:inline-block;padding:10px 14px;border-radius:12px;
-  background:transparent;border:1px solid var(--edge);color:var(--fg);
-  text-decoration:none;font-weight:600
+  display:inline-block; padding:10px 14px; border-radius:12px;
+  background:transparent; border:1px solid var(--edge); color:var(--fg);
+  text-decoration:none; font-weight:600;
 }
-.btn:hover{border-color:var(--accent);box-shadow:var(--glow)}
-.btn-accent{background:var(--accent);color:#051018;border:none}
-.btn-accent:hover{filter:brightness(1.05);box-shadow:var(--glow)}
+.btn:hover{ border-color:var(--accent); box-shadow:var(--glow) }
+.btn-accent{ background:var(--accent); color:#051018; border:none }
+.btn-accent:hover{ filter:brightness(1.05); box-shadow:var(--glow) }
 
-.hero__art{display:flex;align-items:center;justify-content:center}
-.crystal{width:min(300px,90%);animation:float 6s ease-in-out infinite}
-@keyframes float{50%{transform:translateY(-6px)}}
-
+/* ==== Cards ============================================================= */
 .cards{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:16px;
   margin:28px 0 8px;
 }
 .card{
-  background:var(--panel);border:1px solid var(--edge);border-radius:16px;padding:16px;
-  box-shadow:0 12px 30px rgba(0,0,0,.25)
+  display:flex; flex-direction:column;       /* lets actions stick to bottom */
+  min-height:15rem;
+
+  background:var(--panel);
+  border:1px solid var(--edge);
+  border-radius:16px;
+  padding:16px;
+  box-shadow:0 12px 30px rgba(0,0,0,.25);
 }
-.card h3{margin:0 0 6px}
-.card__actions{display:flex;gap:10px;margin-top:10px}
+.card h3{ margin:0 0 6px; line-height:1.1 }
+.card p{ margin-bottom:12px }
+.card__actions{ margin-top:auto; display:flex; gap:10px }
+
 .card .mini{
-  text-decoration:none;color:var(--accent);border:1px solid var(--edge);padding:6px 10px;border-radius:10px
+  text-decoration:none; color:var(--accent);
+  border:1px solid var(--edge); padding:6px 10px; border-radius:10px;
 }
-.card .mini:hover{border-color:var(--accent);box-shadow:var(--glow)}
+.card .mini:hover{ border-color:var(--accent); box-shadow:var(--glow) }
 
-.site-footer{margin:24px 0 32px}
-.site-footer .muted{color:var(--muted)}
+/* ==== Footer ============================================================ */
+.site-footer{ margin:24px 0 32px }
+.site-footer .muted{ color:var(--muted) }
 
-code{background:#0b1320;border:1px solid var(--edge);padding:2px 6px;border-radius:8px}
+/* ==== Code sizing/wrapping (since body is 32px) ======================== */
+code, kbd, samp, pre{ font-size:0.55em; line-height:1.35 }
+code{
+  white-space:normal; word-break:break-word; overflow-wrap:anywhere;
+  padding:2px 6px;
+  background:#1d1d1d; border:1px solid var(--edge); border-radius:8px;
+}
 
-/* Responsive */
+/* ==== Responsive ======================================================== */
 @media (max-width:860px){
-  .hero{grid-template-columns:1fr}
-  .hero__art{order:-1}
+  .hero{ grid-template-columns:1fr }
+  .hero__art{ order:-1 }
 }
