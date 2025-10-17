@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FFIX Mod Tools by WarpedEdge</title>
+  <meta name="description" content="Browser-friendly utilities for FFIX modding." />
+  <link rel="preload" href="/styles.css" as="style" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/styles.css"></noscript>
+  <style>
+    :root { --bg:#0b0f16; --card:#121826; --fg:#e6edf3; --muted:#8aa0b3; --accent:#7cc2ff;}
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,Segoe UI,Roboto,Ubuntu;}
+    .wrap{max-width:980px;margin:0 auto;padding:56px 20px}
+    .hero{display:grid;gap:12px;margin:48px 0}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:24px}
+    .card{background:var(--card);border:1px solid #1c2434;border-radius:16px;padding:18px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    a.cta{display:inline-block;margin-top:8px;padding:10px 14px;border-radius:12px;background:var(--accent);color:#09111a;text-decoration:none;font-weight:600}
+    .muted{color:var(--muted)}
+    header,footer{display:flex;justify-content:space-between;align-items:center;gap:12px}
+    nav a{color:var(--muted);text-decoration:none;margin-left:12px}
+    nav a:hover{color:var(--fg)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>FFIX Mod Tools</h1>
+      <nav>
+        <a href="/docs">Docs</a>
+        <a href="/changelog">Changelog</a>
+        <a href="https://github.com/WarpedEdge/ffix-mod-tools">GitHub</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h2>Fast, privacy-friendly FFIX utilities — right in your browser.</h2>
+      <p class="muted">This is the home base. Tools will open as standalone pages or pop-ups later.</p>
+      <div>
+        <a class="cta" href="/tools" aria-label="View tools">View Tools</a>
+        <span class="muted"> · or download desktop builds later</span>
+      </div>
+    </section>
+
+    <section>
+      <h3>Coming soon</h3>
+      <div class="cards">
+        <div class="card"><strong>Ability Features</strong><div class="muted">Patch & validate AbilityFeatures.txt</div></div>
+        <div class="card"><strong>Battle SFX Creator</strong><div class="muted">Assemble battle SFX packs</div></div>
+        <div class="card"><strong>Icon Atlas Helper</strong><div class="muted">Export/import icon sheets</div></div>
+      </div>
+    </section>
+
+    <footer class="muted" style="margin-top:48px">
+      <div>© <span id="y"></span> WarpedEdge</div>
+      <div>Made for the FFIX modding community</div>
+    </footer>
+  </div>
+  <script>document.getElementById('y').textContent = new Date().getFullYear()</script>
+</body>
+</html>
